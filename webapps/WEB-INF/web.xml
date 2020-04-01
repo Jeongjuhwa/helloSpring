@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>helloSpring</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- Front Controller 세팅 -->
+  <servlet>
+  	<servlet-name>spring</servlet-name>
+  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  	<!-- 기본 설정 파일의 규칙이 마음에 들지 않으면 다른 이름으로 정의 -->
+  	<!-- <init-param>
+  		<param-name>contextConfigLocation</param-name>
+  		<param-value>/WEB-INF/spring-servlet.xml</param-value>
+  	</init-param>  -->
+  </servlet>
+  <!-- Front Controller 패턴은 사용자의 모든 요청을 Front Controller가 처리한다 -->
+  <servlet-mapping>
+  	<servlet-name>spring</servlet-name>
+  	<url-pattern>/</url-pattern>
+  
+  
+  </servlet-mapping>
+  <!-- 스프링 설정 파일: 서블릿 이름-servlet.xml -->
+  
+  <!--  Filter 등록 -->
+  <!-- EncodingFilter -->
+  <filter>
+ 	<filter-name>encodingFilter</filter-name>
+ 	<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+ 	<init-param>
+ 	<param-name>encoding</param-name>
+ 	<param-value>UTF-8</param-value>
+ 	</init-param>
+  </filter>
+  <filter-mapping>
+  	<filter-name>encodingFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <!-- Listener에 spring의 ContextLoaderLister를 등록하면
+  Root Application Context에 접근할 수 있다.
+  기본 파일명은 /WEB-INF/applicationContext.xml -->
+  <listener>
+  	<listener-class>
+  	org.springframework.web.context.ContextLoaderListener
+  	</listener-class>
+  </listener>
+  
+  <!-- 기본 applicationContext.xml 파일 명을 어길경우 -->
+  <context-param>
+  	<param-name>contextConfigLocation</param-name>
+  	<param-value>/WEB-INF/applicationContext.xml</param-value>
+  </context-param> 
+</web-app>

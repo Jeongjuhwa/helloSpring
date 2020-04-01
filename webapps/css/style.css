@@ -1,0 +1,12 @@
+@charset "UTF-8"
+
+body{
+	color: gray;
+}
+h1{
+	font-size: 1.8em;
+	color: red;
+}
+p{
+	font-size: 1.1em;
+}
